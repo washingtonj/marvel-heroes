@@ -15,7 +15,7 @@ export default StyleSheet.create({
 
   welcome: {
     marginTop: 24,
-    marginBottom: 15,
+    marginBottom: 48,
   },
 
   welcomeSubtitle: {

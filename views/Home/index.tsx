@@ -12,14 +12,19 @@ export default function Home() {
     <View style={styles.container}>
       <View style={styles.containerWithMargin}>
         <AppBar />
-        <View style={styles.welcome}>
-          <Text style={styles.welcomeSubtitle}>Bem vindo ao Marvel Heroes</Text>
-          <Text style={styles.welcomeTitle}>Escolha o seu personagem</Text>
-        </View>
       </View>
 
       <SafeAreaView style={{ flex: 1 }}>
         <ScrollView style={{ paddingVertical: 17 }}>
+          <View style={styles.containerWithMargin}>
+            <View style={styles.welcome}>
+              <Text style={styles.welcomeSubtitle}>
+                Bem vindo ao Marvel Heroes
+              </Text>
+              <Text style={styles.welcomeTitle}>Escolha o seu personagem</Text>
+            </View>
+          </View>
+
           {categories.map((categorie) => (
             <>
               <ScrollingCategory
