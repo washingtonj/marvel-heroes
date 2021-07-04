@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { View, Text, ScrollView, SafeAreaView } from "react-native";
 import styles from "./styles";
 import AppBar from "../../components/AppBar";
-import ScrollingCategory from "./_components/ScrollingCategory";
+import HomeCategories from "../../components/HomeCategories";
 import { getCategories } from "../../services/categories.services";
 import { Categories } from "../../interfaces/Categories";
 
@@ -31,7 +31,7 @@ export default function Home() {
           </View>
           {categories?.map((categorie) => (
             <React.Fragment key={categorie.id}>
-              <ScrollingCategory
+              <HomeCategories
                 section={categorie.categorie}
                 persons={categorie.persons}
               />
