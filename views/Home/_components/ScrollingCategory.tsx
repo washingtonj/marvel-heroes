@@ -27,8 +27,9 @@ export default function ScrollingCategory({ section, persons }: Props) {
         showsHorizontalScrollIndicator={false}
         contentContainerStyle={styles.scrolling}
       >
-        {persons.map((person) => (
+        {persons.map((person, index) => (
           <ImageBackground
+            key={index}
             imageStyle={{ borderRadius: 16 }}
             style={styles.heroImageContainer}
             source={{ uri: person.imagePath }}
