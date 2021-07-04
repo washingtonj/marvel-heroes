@@ -1,46 +1,44 @@
 import React from "react";
-import { View, Text, StyleSheet, ImageBackground, ScrollView } from "react-native";
+import {
+  View,
+  Text,
+  StyleSheet,
+  ImageBackground,
+  ScrollView,
+} from "react-native";
 import colors from "../../../constants/colors";
 import typography from "../../../constants/typography";
+import { Person } from "../../../interfaces/Person";
 
-export default function ScrollingCategory() {
+interface Props {
+  section: string;
+  persons: Array<Person>
+}
+
+export default function ScrollingCategory({ section, persons }: Props) {
   return (
     <View style={styles.container}>
       <View style={styles.topbar}>
-        <Text style={styles.sectionTitle}>Heróis</Text>
+        <Text style={styles.sectionTitle}>{section}</Text>
         <Text style={styles.sectionSeeAll}>Ver todos</Text>
       </View>
-      <ScrollView horizontal={true} showsHorizontalScrollIndicator={false} contentContainerStyle={styles.scrolling}>
-        <ImageBackground
-          imageStyle={{ borderRadius: 16 }}
-          style={styles.heroImageContainer}
-          source={require("../../../assets/chars/spider-man.png")}
-        >
-          <View style={styles.heroTextContainer}>
-            <Text style={styles.heroName}>Peter Parker</Text>
-            <Text style={styles.HeroNickname}>Homem Aranha</Text>
-          </View>
-        </ImageBackground>
-        <ImageBackground
-          imageStyle={{ borderRadius: 16 }}
-          style={styles.heroImageContainer}
-          source={require("../../../assets/chars/deadpool.png")}
-        >
-          <View style={styles.heroTextContainer}>
-            <Text style={styles.heroName}>Wade Wilson</Text>
-            <Text style={styles.HeroNickname}>Deadpool</Text>
-          </View>
-        </ImageBackground>
-        <ImageBackground
-          imageStyle={{ borderRadius: 16 }}
-          style={styles.heroImageContainer}
-          source={require("../../../assets/chars/thanos.png")}
-        >
-          <View style={styles.heroTextContainer}>
-            <Text style={styles.heroName}>Athanasios</Text>
-            <Text style={styles.HeroNickname}>Thanos</Text>
-          </View>
-        </ImageBackground>
+      <ScrollView
+        horizontal={true}
+        showsHorizontalScrollIndicator={false}
+        contentContainerStyle={styles.scrolling}
+      >
+        {persons.map((person) => (
+          <ImageBackground
+            imageStyle={{ borderRadius: 16 }}
+            style={styles.heroImageContainer}
+            source={{ uri: person.imagePath }}
+          >
+            <View style={styles.heroTextContainer}>
+              <Text style={styles.heroName}>{ person.name }</Text>
+              <Text style={styles.HeroNickname}>{ person.alterEgo }</Text>
+            </View>
+          </ImageBackground>
+        ))}
       </ScrollView>
     </View>
   );
@@ -78,7 +76,7 @@ const styles = StyleSheet.create({
     justifyContent: "flex-end",
     width: 140,
     height: 230,
-    marginRight: 16
+    marginRight: 16,
   },
 
   heroTextContainer: {
@@ -90,7 +88,7 @@ const styles = StyleSheet.create({
   heroName: {
     color: colors["primary-white"],
     ...typography["card-subtitle"],
-    marginBottom: 2
+    marginBottom: 2,
   },
 
   HeroNickname: {

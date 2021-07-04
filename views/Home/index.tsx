@@ -1,10 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 import { View, Text, ScrollView, SafeAreaView } from "react-native";
 import styles from "./styles";
 import AppBar from "../../components/AppBar";
 import ScrollingCategory from "./_components/ScrollingCategory";
+import { getCategories } from "../../services/categories.services";
 
 export default function Home() {
+  const [categories, setCategories] = useState(getCategories());
+
   return (
     <View style={styles.container}>
       <View style={styles.containerWithMargin}>
@@ -17,12 +20,16 @@ export default function Home() {
 
       <SafeAreaView style={{ flex: 1 }}>
         <ScrollView style={{ paddingVertical: 17 }}>
-          <ScrollingCategory />
-          <View style={{ marginVertical: 30 }}></View>
-          <ScrollingCategory />
-          <View style={{ marginVertical: 30 }}></View>
-          <ScrollingCategory />
-          <View style={{ marginVertical: 30 }}></View>
+          {categories.map((categorie) => (
+            <>
+              <ScrollingCategory
+                section={categorie.categorie}
+                persons={categorie.persons}
+                key={categorie.id}
+              />
+              <View style={{ marginVertical: 30 }}></View>
+            </>
+          ))}
         </ScrollView>
       </SafeAreaView>
     </View>
